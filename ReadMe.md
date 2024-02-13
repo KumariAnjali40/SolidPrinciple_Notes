@@ -163,3 +163,52 @@ Now if a dev is working on visitor, another dev is working on animal - will they
 No!
 the dev working on visitor doesn't need to know anything about animals
 
+
+🐦 Design a Bird
+================
+```java
+class Bird extends Animal {
+String species;
+Integer beakLength;
+Integer wingSpan;
+void fly() {
+if (species == "sparrow")
+print("flap wings and fly low")
+else if (species == "eagle")
+print("glide elegantly very high in the sky")
+else if (species == "peacock")
+print("only pehens can fly, make peacocks cant")
+}
+}
+```
+
+🕊 Different birds fly differently
+Do you always write code yourself? Or do you often import external libraries?
+
+
+```java
+// go to github, search for zoo libraries
+[SimpleZooLibrary]
+{
+class ZooEntity { ... }
+class Animal extends ZooEntity { ... }
+class Bird extends Animal {
+String species;
+Integer beakLength;
+Integer wingSpan;
+void fly() {
+if (species == "sparrow")
+print("flap wings and fly low")
+else if (species == "eagle")
+print("glide elegantly very high in the sky")
+else if (species == "peacock")
+print("only pehens can fly, make peacocks cant")
+else if (species == "helibird")
+print(...)
+}
+}
+}
+// simple-library.dll .so .com .jar .pyc ...
+// minified js .exe
+// you might not have the source code always
+// even if you do have it
