@@ -350,3 +350,93 @@ No. The resolution was the same, but the intent was different
 SRP = readability, maintainability, testability
 OCP = extensibility
 🔗 All the SOLID principles are linked together - if you stick to one, you might get others for free!
+
+
+-----------------------------------------------------------------------------
+Some of you don't understand the OOP concepts properly
+Everyone focusses on DSA - grind leetcode / interviewbit / hackerrank
+Most people they ignore the rest of Computer Science
+Topics to be a "good" entry-mid level developer (SDE-1 / 2)
+1. How computers work in general (Operating systems, databases)
+- Memory management
+- Resource managment
+- Deadlocks prevention
+- Caching
+- Threading
+- practical - hands on manner
+- write SQL questions
+- nested ones, recursive, pagination, ...
+- add an index on a db table
+- when to add an index and when not to
+- pros and cons of adding indexes
+- how to normalize the data correctly
+- how to create an entity-relationship model in the database
+2. Low Level Design (how to architect and design the codebase)
+- Object Oriented Programming
+- inheritance
+- composition
+- composition over inheritance
+- abstract classes
+- interfaces
+- multiple inheritance
+- multi-level inheritance
+- polymorphism (runtime polymorphism)
+- encapsulation/abstraction/generalization
+- SOLID principles
+- How to dissect a problem
+- case studies
+- design a parking lot
+- design snake ladder / chess
+- design Splitwise
+- REST API design
+- Database Schema design
+3. High Level Design (senior positions) - Scalability
+- how do you go from 1000 users, to 5 billion users
+- staff engineer @ google interview question
+- given files containing strings, sort the strings alphabetically
+- how do you sort a list in python
+- how to ask my crush out
+- how to boil water
+- why is the sky blue
+- catch: there is 50 Peta bytes of data
+- won't fit on 1 machine
+- won't fit in the RAM
+- distributed computing - Map Reduce
+
+
+🐓 Can all the birds fly?
+=========================
+
+```java
+abstract class Bird {
+abstract void fly();
+void eat() { ... }
+void poop() { ... }
+void speak() { ... }
+}
+class Sparrow extends Bird {
+void fly() {
+print("fly low")
+}
+}
+class Eagle extends Bird {
+void fly() {
+print("fly high")
+}
+}
+class Kiwi extends Bird {
+void fly() {
+}
+}
+```
+Are there some species of birds which can't fly?
+Penguins, Kiwi, Ostrich, Emu, Dodo ...
+>
+> ❓ How do we solve this?
+>
+> • Throw exception with a proper message
+> • Don't implement the `fly()` method
+> • Return `null`
+> • Redesign the system
+>
+Run away from the problem - Simply don't implement the fly() method
