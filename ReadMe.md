@@ -630,3 +630,152 @@ Yes
 🔗 SOLID principles are linked together
 
 -----------------------------------------------------------------------------
+
+
+
+🗑 Design a Cage
+================
+```java
+// dependencies
+interface IDoor { // High level abstraction
+void resistEscape(Animal animal) // "do this"
+void resistAttack(Attack attack) // I don't know how
+}
+class WoodenDoor implement IDoor { // Low level implementation
+void resistEscape(Animal animal) {
+// put the animal back in the cage
+animal.setLocation(this.cage.center); // this is exactly how
+// to resist excape
+}
+void resistAttack(Attack attack) {
+if(attack.power <= this.cage.power) {
+this.cage.health -= attack.power;
+} else {
+this.cage.destroy()
+}
+}
+}
+class IronDoor implement IDoor { ... } // Low Level Implementation
+class AdamantiumDoor implement IDoor { ... } // Low Level Implementation
+class VibraniumDoor implement IDoor { ... } // Low Level Implementation
+interface FeedingBowl { // High Level Abstraction
+void feedAnimal(Animal animal);
+}
+class FruitBowl implements FeedingBowl { ... } // Low Level Implementation
+class MeatBowl implements FeedingBowl { ... } // Low Level Implementation
+class GrainBowl implements FeedingBowl { ... } // Low Level Implementation
+class Cage1 { // High level code
+// this cage is for tigers // because it delegates
+// "Controller"
+IronDoor door;
+MeatBowl bowl;
+List<Tiger> kitties;
+public Cage1() {
+// create the dependencies
+this.door = new IronDoor();
+this.bowl = new MeatBowl();
+this.kitties.add(new Tiger("simba"));
+this.kitties.add(new Tiger("black panther"));
+}
+void resistAttack(Attack attack) {
+// delegate the task to the door
+this.door.resistAttack(attack);
+}
+void resistEscape(Animal animal) {
+this.door.resistEscape(animal);
+}
+void feed() {
+
+for(Tiger t: this.kitties)
+this.bowl.feed(t)
+}
+}
+class Cage2 {
+// this cage is for peacocks
+WoodenDoor door;
+FruitBowl bowl;
+List<Peacock> beauties;
+public Cage1() {
+// create the dependencies
+this.door = new WoodenDoor();
+this.bowl = new FruitBowl();
+this.beauties.add(new Peacock("pea1"));
+this.beauties.add(new Peacock("pea2"));
+}
+}
+// 100 more different cages
+
+class ZooGame {
+void main() {
+Cage1 forTigers = new Cage1();
+Cage2 forPeacocks = new Cage2();
+// to add a new cage, say for ducks, I will first have to create a new class
+}
+}
+```
+
+🐞 Lot of code repetition
+- every cage is a new class
+- if I wish to create a new cage - I need to implement a new class
+Another Issue
+- first need to understand what "high level" and "low level" code is
+- High Level abstractions: they tell you what to do, but not how to do it
+- on a factory floor,
+- managers are high level employees: they tell you what to do, not how to do it
+- CEO - high level - set the goals - what needs to be done
+- Low Level implementation details: they tell you how exactly to do something
+- engineers / workers
+- actually performs the job
+- they know exactly how to do things
+
+```
+------- --------- -------
+IBowl IAnimal IDoor high level abstractions
+------- --------- -------
+║ ║ ║
+║ ║ ║
+┏━━━━━━━━━━┓ ┏━━━━━━━┓ ┏━━━━━━━━━━┓
+┃ MeatBowl ┃ ┃ Tiger ┃ ┃ IronDoor ┃ low level implementations
+┗━━━━━━━━━━┛ ┗━━━━━━━┛ ┗━━━━━━━━━━┛
+│ │ │
+╰───────────────╁───────────────╯
+┃
+┏━━━━━━━┓
+
+┃ Cage1 ┃ high level controller
+
+┗━━━━━━━┛
+```
+High level class `Cage1` depends on low level implementations `Tiger`, `MeatBowl`, `IronDoor`
+
+=================================
+⭐ Dependency Inversion Principle - what to do? guideline
+=================================
+
+- High level code should NEVER depend on low level implementation details
+- Instead, it should depend only on high level abstractions
+
+```
+------- --------- -------
+IBowl IAnimal IDoor
+------- --------- -------
+│ │ │
+╰───────────────╁──────────────╯
+┃
+┏━━━━━━┓
+┃ Cage ┃
+┗━━━━━━┛
+
+```
+
+But how?
+
+=======================
+💉 Dependency Injection - how to acieve that guideline
+=======================
+- don't create the dependencies yourself
+- instead, let your client create the dependencies, and inject them into you
+- client = any piece of code that uses you
+
+```java
+
