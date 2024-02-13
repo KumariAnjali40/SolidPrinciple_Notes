@@ -499,3 +499,94 @@ bird.fly();
 ✅ Before extension
 Code works perfectly fine. I tested it, we've deployed it
 Dev is happy, customers are happy
+
+❌ After extension
+1. did they modify existing code? No
+2. was the code working previously? Yes
+3. Given 1. and 2. should the old code continue working? Yes
+4. In reality, is the old code working now? No
+
+==================================
+
+⭐ Liskov's Subtitution Principle
+==================================
+- don't break contracts!
+- Any object of child class `class Child extends Parent` should be able to replace any object of a parent
+class, without any issues - the code should still work as before
+
+🎨 Redesign the system!
+```java
+// accept the fact that not all birds can fly
+abstract class Bird {
+// we should NOT have abstract void fly
+// because if we do, then our children might be forced to voilate our contract
+abstract void poop();
+abstract void eat();
+}
+interface ICanFly { // java gets around the "diamond problem" by preventing multiple inheritance and
+using interfaces
+void fly();
+}
+class Sparrow extends Bird implements ICanFly {
+void fly() { print("fly low") }
+}
+class Eagle extends Bird implements ICanFly {
+void fly() { print("fly low") }
+}
+class Kiwi extends Bird {
+// because it doesn't implement ICanFly, we don't have to provide the void fly()
+}
+```
+
+```py
+from abc import ABC, abstractmethod
+class Bird(ABC):
+@abstractmethod
+def poop(self):
+raise NotImplementedError()
+@abstractmethod
+def eat(self):
+raise NotImplementedError()
+class ICanFly(ABC): # python gets around the diamond problem by using MRO - allows multiple
+inheritance
+@abstractmethod
+def fly(self):
+raise NotImplementedError()
+class Sparrow(Bird, ICanFly):
+def fly(self):
+print('fly low')
+class Kiwi(Bird):
+...
+# no need of def fly() here
+```
+
+-----------------------------------------------------------------------------
+
+✈️What else can fly?
+
+=====================
+```java
+abstract class Bird {
+abstract void poop();
+abstract void eat();
+}
+interface ICanFly {
+void fly();
+void kickToTakeOff(); // actions that the bird will take
+void flapWings(); // before starting to fly
+}
+class Sparrow extends Bird implements ICanFly {
+void fly() { print("fly low") }
+}
+class Shaktiman implements ICanFly {
+void fly() { print("spin fast") }
+void flapWings() {
+// Sorry Shaktiman!
+}
+}
+```
+Insects, Helicopters, Aeroplanes, Papi ki Pari, Doremon, Shaktiman, Mom's Chappal, Aladdin
+>
+> ❓ Should these additional methods be part of the ICanFly interface?
+>
+> • Yes, obviously. All things methods are related to flying
