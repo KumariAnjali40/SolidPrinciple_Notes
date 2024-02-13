@@ -440,3 +440,62 @@ Penguins, Kiwi, Ostrich, Emu, Dodo ...
 > • Redesign the system
 >
 Run away from the problem - Simply don't implement the fly() method
+
+
+```java
+abstract class Bird { // abstract class - incomplete blueprint
+abstract void fly(); // hey Mr. compiler, we don't know how to implement fly method
+void eat() { ... }
+void poop() { ... }
+void speak() { ... }
+}
+class Kiwi extends Bird {
+// for Kiwi to extend Bird
+// either it should supply the implementation of void fly
+// or, if it doesn't, then Kiwi will be an incomplete concept as well
+// no void fly here
+}
+```
+🐞 Compiler Error: either class Kiwi should implement void fly, or it should be marked as an abstract class
+⚠️ Throw a proper exception / return null
+```java
+
+abstract class Bird { // abstract class - incomplete blueprint
+abstract void fly(); // hey Mr. compiler, we don't know how to implement fly method
+void eat() { ... }
+void poop() { ... }
+void speak() { ... }
+}
+class Kiwi extends Bird {
+void fly() {
+throw new FlightlessBirdException("Kiwis can't fly")
+}
+}
+```
+
+🐞 Violates expectations!
+```java
+abstract class Bird {
+abstract void fly();
+}
+class Sparrow extends Bird { void fly() {print("fly low") }}
+class Eagle extends Bird { void fly() {print("fly high") }}
+
+class ZooGame {
+Bird getBirdFromUserChoice() {
+// user can choose any type of bird
+// and based on their choice, we will return the appropriate object
+// Sparrow sparrow = new Sparrow(); // Runtime Polymorphism
+// reutrn sparrow;
+// class type - Sparrow / Eagle / ...
+// data type - Bird
+}
+void main() {
+Bird bird = getBirdFromUserChoice();
+bird.fly();
+}
+}
+```
+✅ Before extension
+Code works perfectly fine. I tested it, we've deployed it
+Dev is happy, customers are happy
