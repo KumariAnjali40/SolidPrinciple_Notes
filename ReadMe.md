@@ -1,4 +1,4 @@
-                                                                                             **SOLID PRINCIPLES**
+                                                                                 **SOLID PRINCIPLES**
 
 The SOLID principles are a set of five design principles that, when followed, help create more maintainable, flexible, and scalable software. These principles were introduced by Robert C. Martin and are widely used in object-oriented programming.
 
