@@ -779,3 +779,25 @@ But how?
 
 ```java
 
+
+```
+Inversion of Control - Spring, Django, React, Angular, ...
+
+Enterprise Code
+===============
+
+Satire - FizzBuzzEnterpriseEdition
+Code in a lot of large companies (Google / Amazon / Uber) might look overengineered!
+- projects are large (10,000+ devs)
+- devs come and go
+- dev 1 writes code
+- dev 2 maintains it
+- codebases are massive
+- microsoft - main repo - ~2000 commits are made each day
+- overall the repo size (pure code) more than 20 GB
+- Code design if of utmost importance!
+- A dev who doesn't understand LLD
+- I've no idea what is going on
+- A dev who has expertise in LLD
+- most of the time you won't even have to read the code
+- just know looking at the pattern name, you will know exactly what the code does and why!
