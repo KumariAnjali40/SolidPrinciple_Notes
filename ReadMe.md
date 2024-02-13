@@ -801,3 +801,74 @@ Code in a lot of large companies (Google / Amazon / Uber) might look overenginee
 - A dev who has expertise in LLD
 - most of the time you won't even have to read the code
 - just know looking at the pattern name, you will know exactly what the code does and why!
+
+
+----------------------
+⭐ Interview Questions
+----------------------
+> ❓ Which of the following is an example of breaking
+> Dependency Inversion Principle?
+>
+> A) A high-level module that depends on a low-level module
+> through an interface
+>
+> B) A high-level module that depends on a low-level module directly
+>
+> C) A low-level module that depends on a high-level module
+> through an interface
+>
+> D) A low-level module that depends on a high-level module directly
+>
+
+> ❓ What is the main goal of the Interface Segregation Principle?
+>
+> A) To ensure that a class only needs to implement methods that are
+> actually required by its client
+>
+> B) To ensure that a class can be reused without any issues
+>
+> C) To ensure that a class can be extended without modifying its source code
+>
+> D) To ensure that a class can be tested without any issues
+
+>
+> ❓ Which of the following is an example of breaking
+> Liskov Substitution Principle?
+>
+> A) A subclass that overrides a method of its superclass and changes
+> its signature
+>
+> B) A subclass that adds new methods
+>
+> C) A subclass that can be used in place of its superclass without
+> any issues
+>
+> D) A subclass that can be reused without any issues
+>
+
+> ❓ How can we achieve the Interface Segregation Principle in our classes?
+>
+> A) By creating multiple interfaces for different groups of clients
+> B) By creating one large interface for all clients
+> C) By creating one small interface for all clients
+> D) By creating one interface for each class
+
+> ❓ Which SOLID principle states that a subclass should be able to replace
+> its superclass without altering the correctness of the program?
+>
+> A) Single Responsibility Principle
+> B) Open-Close Principle
+> C) Liskov Substitution Principle
+> D) Interface Segregation Principle
+>
+
+>
+> ❓ How can we achieve the Open-Close Principle in our classes?
+>
+> A) By using inheritance
+> B) By using composition
+> C) By using polymorphism
+> D) All of the above
+>
+
+# ============================ That's all, Thank You! ===========================
