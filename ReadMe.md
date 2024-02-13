@@ -212,3 +212,141 @@ print(...)
 // minified js .exe
 // you might not have the source code always
 // even if you do have it
+
+
+[MyZooGame]
+{
+import SimpleZooLibrary.Bird;
+// add a new type of Bird which flies in a different manner
+// scientists discovered HeliBird
+class ZooGame {
+void main() {
+Bird sparrow = new Bird(species="sparrow");
+sparrow.fly();
+Bird eagle = new Bird(species="eagle");
+
+eagle.fly();
+}
+}
+}
+```
+
+🐞 Problems with the above code?
+- Readable
+- Testable
+- Maintainable
+- Extensible - FOCUS!
+A lot of times, we might not have modificiation access to some code. In this case, we might not be able to
+extend it.
+Zerodha - Kite API
+Google Adsense - Developer API
+Google Adsense team - exposed an API for the Google Search team
+Twitter - Developer API
+
+🛠 How to fix this?
+
+
+=======================
+⭐ Open/Close Principle
+=======================
+- Your code should be closed for modification, yet, open for extension!
+- We wish the code that we've written to be "owned" by us - others should NOT be able to make
+modifications
+- At the same time, we wish others to be able to add new functionality - they should be able to extend it.
+❔ Why is it wrong to modify existing code?
+typical flow in large companies - over 1 month!
+- dev writes code on their local machine, test it, commit it - make a Pull Request (PR)
+- this PR goes for review - rest of the team with review the PR, and they will suggest improvements
+- after a bunch or iteratiions - your PR gets merged
+- deployment process
++ QA team - they will write more tests (unit, integration)
++ Staging servers - tested there
++ Production servers
+* A/B testing
+- deploye to only 5% of the userbase
+- monitor
+- are more exceptions being raised
+- are the users complaining
+- are ther emore support tickets
+- are the reviews going down
+- is the revenue being effected
+* finally the code is deployed to the entire userbase
+
+* ```java
+[SimpleZooLibrary]
+{
+class ZooEntity { ... }
+class Animal extends ZooEntity { ... }
+abstract class Bird extends Animal {
+String species;
+Integer beakLength;
+Integer wingSpan;
+abstract void fly()
+}
+class Sparrow extends Bird {
+
+void fly() {
+print("flap wings and fly low")
+}
+}
+class Eagle extends Bird {
+void fly() {
+print("glide elegantly very high in the sky")
+}
+}
+}
+
+[MyZooGame]
+{
+import SimpleZooLibrary.Bird;
+// add a new type of Bird which flies in a different manner
+// scientists discovered HeliBird
+class ZooGame {
+void main() {
+Bird sparrow = new Bird(species="sparrow");
+sparrow.fly();
+Bird eagle = new Bird(species="eagle");
+eagle.fly();
+}
+}
+}
+```
+
+- Extension
+```java
+import SimpleZooLibrary.Bird;
+// add a new type of Bird which flies in a different manner
+// scientists discovered HeliBird
+class HellBird extends Bird {
+void fly() {
+print("fly like a helicopter!")
+}
+}
+class ZooGame {
+void main() {
+Sparrow sparrow = new Sparrow();
+sparrow.fly();
+Eagle eagle = new Eagle();
+eagle.fly();
+HellBird helli = new HellBird();
+helli.fly()
+}
+}
+```
+
+You should plan for these future "extensions" preemptively!
+As the library author, it is your responsibility to write code that follows Open/Close from day 1
+THIS is why companies pay so much to devs
+Max salary that devs can get in India - Bangalore/Hyd/Chennai
+dev salaries in India - goes upto 3 Cr (base) - Principal Engineer / Staff Engineer (10+ years of experience
+in tier 1 companies)
+Because these people are able to anticipate requirement changes, and they're able to write code that doesn't
+need to change in the face of changing requirements!
+❔ Isn't this the same thing that we did for Single Responsibility as well? Al we did was apply OOP
+techniques and split a large class into multiple classes by using inheritance!
+❔ Does that mean that OCP == SRP?
+No. The resolution was the same, but the intent was different
+
+SRP = readability, maintainability, testability
+OCP = extensibility
+🔗 All the SOLID principles are linked together - if you stick to one, you might get others for free!
