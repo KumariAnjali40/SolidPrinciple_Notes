@@ -590,3 +590,43 @@ Insects, Helicopters, Aeroplanes, Papi ki Pari, Doremon, Shaktiman, Mom's Chappa
 > ❓ Should these additional methods be part of the ICanFly interface?
 >
 > • Yes, obviously. All things methods are related to flying
+
+==================================
+⭐ Interface Segregation Principle
+==================================
+- keep your interfaces minimal
+- don't have fat interfaces
+- your clients should not be forced to implement methods that they don't require
+How will you fix `ICanFly`?
+```java
+abstract class Bird {
+abstract void poop();
+abstract void eat();
+}
+interface ICanFly {
+void fly();
+}
+interface IHasWings {
+void flapWings(); // before starting to fly
+}
+interface ICanJump {
+void kickToTakeOff(); // actions that the bird will take
+}
+class Sparrow extends Bird implements ICanFly, IHasWings, ICanJump {
+void fly() { print("fly low") }
+void flapWings() { print("flap flap") }
+void kickToTakeOff() { print("small little jumpie jumpie") }
+}
+class Shaktiman implements ICanFly {
+void fly() { print("spin fast") }
+
+// shaktiman doesn't jump
+// shaktiman doesn't flap wings
+}
+```
+
+? Isn't this just the Single Responsibility applied to interfaces?
+Yes
+🔗 SOLID principles are linked together
+
+-----------------------------------------------------------------------------
